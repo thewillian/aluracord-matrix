@@ -1,10 +1,30 @@
 import { Box, Text, TextField, Image, Button } from '@skynexui/components';
 import React from 'react';
 import appConfig from '../config.json';
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-export default function ChatPage() {
-    const [mensagem, setMensagem] = React.useState('');
-    const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
+// como fazer ajax: https://medium.com/@omariosouto/entendendo-como-fazer-ajax-com-a-fetchapi-977ff20da3c6
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzY2MDQ5MiwiZXhwIjoxOTU5MjM2NDkyfQ.j5mzgYdrsW3bg5LCufP6CPTvOmEWCAGG7CEJybpW00U'
+const SUPABASE_URL = 'https://edsbmmlrgrghmfqkxewc.supabase.co'
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+React.useEffect(() => {
+    supabaseClient
+    .from('mensagens')
+    .select('*')
+    .order('id', {ascending: false})
+    .then(({data}) => {
+        console.log('Dados da consulta:', data);
+        setListaDeMensagens(data);
+})
+
+}, []);
+
+
+
+  //export default function ChatPage() {
+ //   const [mensagem, setMensagem] = React.useState('');
+ //   const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
 
     /*
     // Usuário
@@ -19,17 +39,26 @@ export default function ChatPage() {
     */
     function handleNovaMensagem(novaMensagem) {
         const mensagem = {
-            id: listaDeMensagens.length + 1,
+            //id: listaDeMensagens.length + 1,
             de: 'vanessametonini',
             texto: novaMensagem,
         };
 
-        setListaDeMensagens([
+        supabaseClient
+        .from('mensagens')
+        .insert([
+            //tem que ser um objeto com os mesmos campos que você escreveu no supabase
+            mensagem
+        ])
+        .then((oQueTaVindoComoResposta) => {
+            console.log('Criando mensagem: ', oQueTaVindoComoResposta);
+            setListaDeMensagens([          
+          data[0],
           ...listaDeMensagens,
-          mensagem,
-            
         ]);
-        setMensagem('');
+    });
+
+        
     }
 
     return (
@@ -37,7 +66,7 @@ export default function ChatPage() {
             styleSheet={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: appConfig.theme.colors.primary[500],
-                backgroundImage: `url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)`,
+                backgroundImage: `url(https://virtualbackgrounds.site/wp-content/uploads/2020/10/star-wars-millennium-falcon-hologame-table-1024x576.jpeg)`,
                 backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 color: appConfig.theme.colors.neutrals['000']
             }}
@@ -113,8 +142,9 @@ export default function ChatPage() {
                 </Box>
             </Box>
         </Box>
-    )
-}
+    );
+                        
+
 
 function Header() {
     return (
@@ -175,7 +205,7 @@ function MessageList(props) {
                                     display: 'inline-block',
                                     marginRight: '8px',
                                 }}
-                                src={`https://github.com/vanessametonini.png`}
+                                src={`https://github.com/${mensagem.de}.png`}
                             />
                             <Text tag="strong">
                                 {mensagem.de}
