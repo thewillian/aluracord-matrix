@@ -1,0 +1,23 @@
+[33mcommit 4b2b8a00ddfe0cc98e8d2040359e9887e1262d5b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: willian <thewillian@hotmail.com>
+Date:   Tue Feb 1 15:26:41 2022 -0300
+
+    integrando com o supabase
+
+[33mcommit ac2d4589e89baebb461514158732a3f9e34fe08a[m
+Author: willian <thewillian@hotmail.com>
+Date:   Fri Jan 28 16:46:19 2022 -0300
+
+    atualizei o chat, aprimorei as habilidades com state
+
+[33mcommit 1d9f234f2418dd8a7ba02bb130ca9416bcfcc3a0[m
+Author: willian <thewillian@hotmail.com>
+Date:   Thu Jan 27 16:59:43 2022 -0300
+
+    fazendo state, novas paginas e navegacao spa vs tradicional
+
+[33mcommit 5dd1cc1936d627e5163f68393ef276efa96dfd3f[m
+Author: willian <thewillian@hotmail.com>
+Date:   Thu Jan 27 01:44:27 2022 -0300
+
+    introducao ao react

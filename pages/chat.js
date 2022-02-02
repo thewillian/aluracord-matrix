@@ -3,7 +3,7 @@ import appConfig from "../pages/config.json";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { ButtonSendSticker } from "../src/components/bss";
+import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
 
 const SUPABASE_ANON_KAY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzQ4NTM3MSwiZXhwIjoxOTU5MDYxMzcxfQ.iYg_rrQfYqI387z5XATAL9w7qeHoFIKcbojSwpasyoU";
@@ -14,7 +14,7 @@ function escutaMensagensEmTempoReal(adicionaMensagem) {
   return supabaseClient
     .from("Mensagens")
     .on("INSERT", (respostaLive) => {
-      adicionaMensagem(respostaLive.new);
+      adicionaMensagem(respostaLive.new);exit
     })
     .subscribe();
 }

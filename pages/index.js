@@ -57,7 +57,7 @@ export default function PaginaInicial() {
           alignItems: "center",
           justifyContent: "center",
           backgroundImage:
-            "url(https://images7.alphacoders.com/653/653797.jpg))",
+            "url(https://images7.alphacoders.com/653/653797.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
